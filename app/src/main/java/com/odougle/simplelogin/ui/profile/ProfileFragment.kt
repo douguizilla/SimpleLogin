@@ -1,4 +1,4 @@
-package com.odougle.simplelogin.ui.start
+package com.odougle.simplelogin.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,18 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.odougle.simplelogin.R
 
-class StartFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_start, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() = StartFragment()
+        fun newInstance() = ProfileFragment()
     }
 }
