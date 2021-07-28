@@ -21,4 +21,8 @@ class StartFragment : Fragment() {
         @JvmStatic
         fun newInstance() = StartFragment()
     }
+
+    interface OnButtonClicked {
+        fun buttonClicked()
+    }
 }
