@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.start.StartFragment">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:text="Botao aqui"/>
+        android:layout_gravity="center"
+        android:text="@string/button_text" />
 
 </FrameLayout>
