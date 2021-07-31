@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.odougle.simplelogin.R
+import com.odougle.simplelogin.extensions.navigateWithAnimations
 import kotlinx.android.synthetic.main.fragment_start.*
 
 class StartFragment : Fragment() {
@@ -24,7 +25,7 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         startButton.setOnClickListener {
-            findNavController().navigate(R.id.action_startFragment_to_profileFragment)
+            findNavController().navigateWithAnimations(R.id.action_startFragment_to_profileFragment)
         }
     }
 
