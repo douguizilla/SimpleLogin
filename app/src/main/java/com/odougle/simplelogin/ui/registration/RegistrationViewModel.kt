@@ -14,6 +14,7 @@ class RegistrationViewModel: ViewModel() {
         class InvalidCredentials(val fields: List<Pair<String, Int>>): RegistrationState()
     }
 
+    //para proteger o livedata e ser usado apenas nesta classe
     private val _registrationStateEvent = MutableLiveData<RegistrationState>(RegistrationState.CollectProfileData)
     val registrationStateEvent: LiveData<RegistrationState>
         get() =_registrationStateEvent
@@ -24,7 +25,6 @@ class RegistrationViewModel: ViewModel() {
     fun colletProfileData(name: String, bio: String){
         if(isValidProfileData(name, bio)){
             //persist data
-
             _registrationStateEvent.value = RegistrationState.CollectCredentials
         }
     }
@@ -67,6 +67,12 @@ class RegistrationViewModel: ViewModel() {
             _registrationStateEvent.value = RegistrationState.InvalidCredentials(invalidFields)
             return false
         }
+        return true
+    }
+
+    fun userCancelledRegistration() : Boolean{
+        authToken = ""
+        _registrationStateEvent.value = RegistrationState.CollectProfileData
         return true
     }
 
