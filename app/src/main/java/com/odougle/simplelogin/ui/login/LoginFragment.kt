@@ -24,12 +24,13 @@ class LoginFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         viewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
             when(authenticationState){
