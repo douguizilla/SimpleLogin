@@ -39,4 +39,10 @@ class ProfileDataFragment : Fragment() {
 
         })
     }
+
+    fun initValidationFields() = mapOf(
+        RegistrationViewModel.INPUT_NAME to inputLayoutProfileDataName,
+        RegistrationViewModel.INPUT_BIO to inputLayoutProfileDataBio,
+
+    )
 }
