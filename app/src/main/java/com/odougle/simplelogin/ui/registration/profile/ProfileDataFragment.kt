@@ -28,6 +28,13 @@ class ProfileDataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val validationFields = initValidationFields()
         listenToRegistrationViewModelEvents(validationFields)
+
+        val name = inputProfileDataName.text.toString()
+        val bio = inputProfileDataBio.text.toString()
+
+        buttonProfileDataNext.setOnClickListener {
+            registrationViewModel.colletProfileData(name, bio)
+        }
     }
 
     private fun initValidationFields() = mapOf(
