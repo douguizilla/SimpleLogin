@@ -6,8 +6,10 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="teste" />
+        android:id="@+id/textProfileUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/profile_text_username"
+        android:layout_gravity="center"/>
 
 </FrameLayout>

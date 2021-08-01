@@ -36,6 +36,9 @@ class LoginFragment : Fragment() {
 
         viewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
             when(authenticationState){
+                is LoginViewModel.AuthenticationState.Authenticated -> {
+                    findNavController().popBackStack()
+                }
                 is LoginViewModel.AuthenticationState.InvalidAuthentication -> {
                     val validationFields: Map<String, TextInputLayout> = initValidationFields()
 
