@@ -57,6 +57,10 @@ class LoginFragment : Fragment() {
             viewModel.authentication(username, password)
         }
 
+        buttonLoginSignUp.setOnClickListener {
+            TODO("descobrir como setar essa parte")
+        }
+
         inputLoginUsername.addTextChangedListener {
             inputLayoutLoginUsername.dismissError()
         }

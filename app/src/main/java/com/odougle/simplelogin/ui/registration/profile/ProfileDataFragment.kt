@@ -29,10 +29,11 @@ class ProfileDataFragment : Fragment() {
         val validationFields = initValidationFields()
         listenToRegistrationViewModelEvents(validationFields)
 
-        val name = inputProfileDataName.text.toString()
-        val bio = inputProfileDataBio.text.toString()
 
         buttonProfileDataNext.setOnClickListener {
+            val name = inputProfileDataName.text.toString()
+            val bio = inputProfileDataBio.text.toString()
+
             registrationViewModel.colletProfileData(name, bio)
         }
     }
