@@ -17,8 +17,14 @@
     <string name="login_button_text_sign_up">Sign up</string>
     <string name="login_input_layout_error_invalid_username">Invalid username</string>
     <string name="login_input_layout_error_invalid_password">Invalid password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Profile Data Fragment-->
+    <string name="profile_data_action_bar_title">Profile Data</string>
+    <string name="profile_data_input_layout_hint_username">Name</string>
+    <string name="profile_data_input_layout_hint_password">Bio</string>
+    <string name="profile_data_input_layout_error_invalid_name">Invalid name</string>
+    <string name="profile_data_input_layout_error_invalid_bio">Invalid bio</string>
+
+    <!--Choose Credentials Fragment-->
 
 </resources>
