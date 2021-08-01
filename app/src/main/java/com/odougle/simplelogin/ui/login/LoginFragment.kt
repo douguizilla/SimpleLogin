@@ -7,11 +7,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
+import com.odougle.simplelogin.extensions.dismissError
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
@@ -53,6 +55,13 @@ class LoginFragment : Fragment() {
             val username = inputLoginUsername.text.toString()
             val password = inputLoginPassword.text.toString()
             viewModel.authentication(username, password)
+        }
+
+        inputLoginUsername.addTextChangedListener {
+            inputLayoutLoginUsername.dismissError()
+        }
+        inputLoginPassword.addTextChangedListener {
+            inputLayoutLoginPassword.dismissError()
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
