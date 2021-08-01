@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
 import com.odougle.simplelogin.ui.registration.RegistrationViewModel
 import kotlinx.android.synthetic.main.fragment_profile_data.*
@@ -25,7 +26,17 @@ class ProfileDataFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val validationFields = initValidationFields()
+        listenToRegistrationViewModelEvents(validationFields)
+    }
 
+    private fun initValidationFields() = mapOf(
+        RegistrationViewModel.INPUT_NAME.first to inputLayoutProfileDataName,
+        RegistrationViewModel.INPUT_BIO.first to inputLayoutProfileDataBio,
+
+    )
+
+    private fun listenToRegistrationViewModelEvents(validationFields: Map<String, TextInputLayout>){
         registrationViewModel.registrationStateEvent.observe(viewLifecycleOwner, Observer { registrationState ->
             when(registrationState){
                 is RegistrationViewModel.RegistrationState.CollectCredentials ->{
@@ -35,14 +46,13 @@ class ProfileDataFragment : Fragment() {
 
                     findNavController().navigate(directions)
                 }
+                is RegistrationViewModel.RegistrationState.InvalidProfileData ->{
+                    registrationState.fields.forEach { fieldError ->
+                        validationFields[fieldError.first]?.error = getString(fieldError.second)
+                    }
+                }
             }
 
         })
     }
-
-    fun initValidationFields() = mapOf(
-        RegistrationViewModel.INPUT_NAME to inputLayoutProfileDataName,
-        RegistrationViewModel.INPUT_BIO to inputLayoutProfileDataBio,
-
-    )
 }
