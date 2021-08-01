@@ -1,6 +1,5 @@
 package com.odougle.simplelogin.ui.start
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +16,6 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_start, container, false)
     }
 
@@ -25,7 +23,6 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         startButton.setOnClickListener {
-            //findNavController().navigateWithAnimations(R.id.action_startFragment_to_profileFragment)
             findNavController().navigateWithAnimations(R.id.action_startFragment_to_profileFragment)
         }
     }
