@@ -22,8 +22,8 @@
 
     <!--Profile Data Fragment-->
     <string name="profile_data_action_bar_title">Profile Data</string>
-    <string name="profile_data_input_layout_hint_username">Name</string>
-    <string name="profile_data_input_layout_hint_password">Bio</string>
+    <string name="profile_data_input_layout_hint_name">Name</string>
+    <string name="profile_data_input_layout_hint_bio">Bio</string>
     <string name="profile_data_input_layout_error_invalid_name">Invalid name</string>
     <string name="profile_data_input_layout_error_invalid_bio">Invalid bio</string>
 
