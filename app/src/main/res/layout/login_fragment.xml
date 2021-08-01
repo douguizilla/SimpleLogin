@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_input_layout_hint_username"
-        app:errorEnabled="true">
+        >
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/inputLoginUsername"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/forms_default_marginTop"
         android:hint="@string/login_input_layout_hint_password"
-        app:errorEnabled="true">
+        >
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/inputLoginPassword"
