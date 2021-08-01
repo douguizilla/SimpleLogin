@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Simple Login</string>
+    <string name="common_next">Next</string>
+    <string name="common_finish">Finish</string>
 
     <!--Start Fragment-->
     <string name="button_text">Start</string>
@@ -32,5 +34,8 @@
     <string name="choose_credentials_input_layout_error_invalid_username">Invalid username</string>
     <string name="choose_credentials_input_layout_error_invalid_password">Invalid password</string>
     <string name="choose_credentials_text_name">%1$s, choose your credentials</string>
+
+
+
 
 </resources>
