@@ -6,14 +6,20 @@ import com.odougle.simplelogin.R
 
 class LoginViewModel : ViewModel() {
     sealed class AuthenticationState{
+        object Authenticated: AuthenticationState()
+        object Unauthenticated: AuthenticationState()
         class InvalidAuthentication(val fields: List<Pair<String,Int>>): AuthenticationState()
     }
 
     val authenticationsStateEvent = MutableLiveData<AuthenticationState>()
 
+    init {
+        authenticationsStateEvent.value = AuthenticationState.Unauthenticated
+    }
+
     fun authentication(username: String, password: String){
         if(isValidForm(username, password)){
-            //esta autenticado
+            authenticationsStateEvent.value = AuthenticationState.Authenticated
         }
     }
 
