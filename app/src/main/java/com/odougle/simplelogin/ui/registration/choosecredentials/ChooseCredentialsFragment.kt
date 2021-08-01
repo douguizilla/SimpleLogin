@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_choose_credentials.*
 
 class ChooseCredentialsFragment : Fragment() {
 
-    val args: ChooseCredentialsFragmentArgs by navArgs()
+    private val args: ChooseCredentialsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +24,6 @@ class ChooseCredentialsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //setando o nome recebido do fragment anterior
-        textChooseCredentialsName.text = getString(R.string.choose_credentials_text_name, args)
+        textChooseCredentialsName.text = getString(R.string.choose_credentials_text_name, args.name)
     }
 }
