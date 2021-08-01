@@ -1,5 +1,6 @@
 package com.odougle.simplelogin.ui.registration
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.odougle.simplelogin.R
@@ -13,7 +14,7 @@ class RegistrationViewModel: ViewModel() {
         class InvalidCredentials(val fields: List<Pair<String, Int>>): RegistrationState()
     }
 
-    private val _registrationStateEvent = MutableLiveData<RegistrationState>((RegistrationState.CollectProfileData)
+    private val _registrationStateEvent = MutableLiveData<RegistrationState>(RegistrationState.CollectProfileData)
     val registrationStateEvent: LiveData<RegistrationState>
         get() =_registrationStateEvent
 
