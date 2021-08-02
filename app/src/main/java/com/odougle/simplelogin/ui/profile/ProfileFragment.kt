@@ -27,7 +27,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val navController = findNavController()
-        loginViewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
+        loginViewModel.authenticationStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
             when(authenticationState){
                 LoginViewModel.AuthenticationState.Authenticated -> {
                     textProfileUsername.text = getString(R.string.profile_text_username, loginViewModel.username)
