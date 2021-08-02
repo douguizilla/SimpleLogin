@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
 import com.odougle.simplelogin.ui.login.LoginViewModel
 import com.odougle.simplelogin.ui.registration.RegistrationViewModel
@@ -47,5 +49,23 @@ class ChooseCredentialsFragment : Fragment() {
         RegistrationViewModel.INPUT_PASSWORD.first to inputLayoutChooseCredentialsPassword,
     )
 
+    private fun listenToRegistrationStateEvent(validationFields: Map<String, TextInputLayout>){
+        registrationViewModel.registrationStateEvent.observe(this, Observer { registrationState ->
+            when(registrationState){
+                is RegistrationViewModel.RegistrationState.RegistrationCompleted ->{
+                    val token = registrationViewModel.authToken
+                    val username = inputChooseCredentialsUsername.text.toString()
+
+                    loginViewModel.authenticateToken(token, username)
+                    navController.popBackStack(R.id.profileFragment, false)
+                }
+                is RegistrationViewModel.RegistrationState.InvalidCredentials -> {
+                    registrationState.fields.forEach { fieldError ->
+                        validationFields[fieldError.first]?.error = getString(fieldError.second)
+                    }
+                }
+            }
+        })
+    }
 
 }
