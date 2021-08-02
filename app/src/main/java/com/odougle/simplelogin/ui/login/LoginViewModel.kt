@@ -37,23 +37,23 @@ class LoginViewModel : ViewModel() {
 
     fun authentication(username: String, password: String){
         if(isValidForm(username, password)){
-            _authenticationStateEvent.value = AuthenticationState.Authenticated
             this.username = username
+            _authenticationStateEvent.value = AuthenticationState.Authenticated
         }
     }
 
     private fun isValidForm(username: String, password: String): Boolean {
-        val invalidFilds = arrayListOf<Pair<String,Int>>()
+        val invalidFields = arrayListOf<Pair<String,Int>>()
         if(username.isEmpty()){
-            invalidFilds.add(INPUT_USERNAME)
+            invalidFields.add(INPUT_USERNAME)
         }
 
         if(password.isEmpty()){
-            invalidFilds.add(INPUT_PASSWORD)
+            invalidFields.add(INPUT_PASSWORD)
         }
 
-        if(invalidFilds.isNotEmpty()){
-            _authenticationStateEvent.value = AuthenticationState.InvalidAuthentication(invalidFilds)
+        if(invalidFields.isNotEmpty()){
+            _authenticationStateEvent.value = AuthenticationState.InvalidAuthentication(invalidFields)
             return false
         }
         return true
