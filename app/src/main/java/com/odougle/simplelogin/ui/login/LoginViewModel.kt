@@ -12,8 +12,6 @@ class LoginViewModel : ViewModel() {
         class InvalidAuthentication(val fields: List<Pair<String,Int>>): AuthenticationState()
     }
 
-    val authenticationsStateEvent = MutableLiveData<AuthenticationState>()
-
     var username: String = ""
     var token: String = ""
 

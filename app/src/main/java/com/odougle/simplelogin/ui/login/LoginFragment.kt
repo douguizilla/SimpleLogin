@@ -74,7 +74,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun listenToAuthenticationStateEvent(validationFields: Map<String, TextInputLayout>) {
-        viewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
+        viewModel.authenticationStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
             when(authenticationState){
                 is LoginViewModel.AuthenticationState.Authenticated -> {
                     findNavController().popBackStack()
