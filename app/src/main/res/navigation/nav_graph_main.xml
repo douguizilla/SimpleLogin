@@ -48,7 +48,7 @@
         <fragment
             android:id="@+id/chooseCredentialsFragment"
             android:name="com.odougle.simplelogin.ui.registration.choosecredentials.ChooseCredentialsFragment"
-            android:label="fragment_choose_credentials"
+            android:label="@string/choose_credentials_action_bar_title"
             tools:layout="@layout/fragment_choose_credentials">
 
             <argument
