@@ -44,8 +44,17 @@ class LoginFragment : Fragment() {
 
         val validationFields = initValidationFields()
         listenToAuthenticationStateEvent(validationFields)
+        registerViewListeners()
 
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
+            cancelAuthentication()
+        }
+
+
+    }
+
+    private fun registerViewListeners() {
         buttonLoginSignIn.setOnClickListener {
             val username = inputLoginUsername.text.toString()
             val password = inputLoginPassword.text.toString()
@@ -62,12 +71,6 @@ class LoginFragment : Fragment() {
         inputLoginPassword.addTextChangedListener {
             inputLayoutLoginPassword.dismissError()
         }
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
-            cancelAuthentication()
-        }
-
-
     }
 
     private fun listenToAuthenticationStateEvent(validationFields: Map<String, TextInputLayout>) {
