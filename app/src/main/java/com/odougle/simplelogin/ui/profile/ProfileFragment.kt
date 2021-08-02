@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.odougle.simplelogin.R
 import com.odougle.simplelogin.ui.login.LoginViewModel
@@ -14,6 +15,9 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {
     private val loginViewModel: LoginViewModel by activityViewModels()
+    private val navController: NavController by lazy {
+        findNavController()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +34,7 @@ class ProfileFragment : Fragment() {
                 is LoginViewModel.AuthenticationState.Authenticated -> {
                     textProfileUsername.text = getString(R.string.profile_text_username, loginViewModel.username)
                 }is LoginViewModel.AuthenticationState.Unauthenticated -> {
-                    findNavController().navigate(R.id.loginFragment)
+                    navController.navigate(R.id.loginFragment)
                 }
 
             }
