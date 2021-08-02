@@ -42,20 +42,9 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        viewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
-            when(authenticationState){
-                is LoginViewModel.AuthenticationState.Authenticated -> {
-                    findNavController().popBackStack()
-                }
-                is LoginViewModel.AuthenticationState.InvalidAuthentication -> {
-                    val validationFields: Map<String, TextInputLayout> = initValidationFields()
+        val validationFields = initValidationFields()
+        listenToAuthenticationStateEvent(validationFields)
 
-                    authenticationState.fields.forEach{ fieldError ->
-                        validationFields[fieldError.first]?.error = getString(fieldError.second)
-                    }
-                }
-            }
-        })
 
         buttonLoginSignIn.setOnClickListener {
             val username = inputLoginUsername.text.toString()
@@ -79,6 +68,21 @@ class LoginFragment : Fragment() {
         }
 
 
+    }
+
+    private fun listenToAuthenticationStateEvent(validationFields: Map<String, TextInputLayout>) {
+        viewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
+            when(authenticationState){
+                is LoginViewModel.AuthenticationState.Authenticated -> {
+                    findNavController().popBackStack()
+                }
+                is LoginViewModel.AuthenticationState.InvalidAuthentication -> {
+                    authenticationState.fields.forEach{ fieldError ->
+                        validationFields[fieldError.first]?.error = getString(fieldError.second)
+                    }
+                }
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
