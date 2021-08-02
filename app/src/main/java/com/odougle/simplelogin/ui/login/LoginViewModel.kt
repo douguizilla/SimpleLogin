@@ -1,5 +1,6 @@
 package com.odougle.simplelogin.ui.login
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.odougle.simplelogin.R
@@ -14,18 +15,29 @@ class LoginViewModel : ViewModel() {
     val authenticationsStateEvent = MutableLiveData<AuthenticationState>()
 
     var username: String = ""
+    var token: String = ""
+
+    private val _authenticationStateEvent = MutableLiveData<AuthenticationState>()
+    val authenticationStateEvent: LiveData<AuthenticationState>
+        get() = _authenticationStateEvent
 
     init {
         refuseAuthentication()
     }
 
     fun refuseAuthentication(){
-        authenticationsStateEvent.value = AuthenticationState.Unauthenticated
+        _authenticationStateEvent.value = AuthenticationState.Unauthenticated
+    }
+
+    fun authenticationToken(token: String, username: String){
+        this.token = token
+        this.username = username
+        _authenticationStateEvent.value = AuthenticationState.Authenticated
     }
 
     fun authentication(username: String, password: String){
         if(isValidForm(username, password)){
-            authenticationsStateEvent.value = AuthenticationState.Authenticated
+            _authenticationStateEvent.value = AuthenticationState.Authenticated
             this.username = username
         }
     }
@@ -41,7 +53,7 @@ class LoginViewModel : ViewModel() {
         }
 
         if(invalidFilds.isNotEmpty()){
-            authenticationsStateEvent.value = AuthenticationState.InvalidAuthentication(invalidFilds)
+            _authenticationStateEvent.value = AuthenticationState.InvalidAuthentication(invalidFilds)
             return false
         }
         return true
