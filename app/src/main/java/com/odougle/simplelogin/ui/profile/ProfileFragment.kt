@@ -29,14 +29,13 @@ class ProfileFragment : Fragment() {
         val navController = findNavController()
         loginViewModel.authenticationsStateEvent.observe(viewLifecycleOwner, Observer { authenticationState ->
             when(authenticationState){
-                is LoginViewModel.AuthenticationState.Authenticated -> {
+                LoginViewModel.AuthenticationState.Authenticated -> {
                     textProfileUsername.text = getString(R.string.profile_text_username, loginViewModel.username)
-                }is LoginViewModel.AuthenticationState.Unauthenticated -> {
+                }
+                LoginViewModel.AuthenticationState.Unauthenticated -> {
                     navController.navigate(R.id.loginFragment)
                 }
-
             }
-
         })
     }
 
