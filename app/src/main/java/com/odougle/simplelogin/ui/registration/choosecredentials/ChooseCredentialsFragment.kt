@@ -3,8 +3,11 @@ package com.odougle.simplelogin.ui.registration.choosecredentials
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -12,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
+import com.odougle.simplelogin.extensions.dismissError
 import com.odougle.simplelogin.ui.login.LoginViewModel
 import com.odougle.simplelogin.ui.registration.RegistrationViewModel
 import kotlinx.android.synthetic.main.fragment_choose_credentials.*
@@ -42,6 +46,37 @@ class ChooseCredentialsFragment : Fragment() {
         textChooseCredentialsName.text = getString(R.string.choose_credentials_text_name, args.name)
 
         val invalidFields = initValidationFields()
+        listenToRegistrationStateEvent(invalidFields)
+        registrationViewListeners()
+        registerDeviceBackStack()
+    }
+
+    private fun registrationViewListeners() {
+        buttonChooseCredentialNext.setOnClickListener {
+            val username = inputChooseCredentialsUsername.text.toString()
+            val password = inputChooseCredentialsPassword.text.toString()
+
+            registrationViewModel.createCredentials(username, password)
+        }
+
+        inputChooseCredentialsUsername.addTextChangedListener {
+            inputLayoutChooseCredentialsUsername.dismissError()
+        }
+
+        inputChooseCredentialsPassword.addTextChangedListener {
+            inputLayoutChooseCredentialsPassword.dismissError()
+        }
+    }
+
+    private fun registerDeviceBackStack() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            cancelRegistration()
+        }
+    }
+
+    private fun cancelRegistration() {
+        registrationViewModel.userCancelledRegistration()
+        navController.popBackStack(R.id.loginFragment, false)
     }
 
     private fun initValidationFields() = mapOf(
@@ -66,6 +101,11 @@ class ChooseCredentialsFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        cancelRegistration()
+        return super.onOptionsItemSelected(item)
     }
 
 }
