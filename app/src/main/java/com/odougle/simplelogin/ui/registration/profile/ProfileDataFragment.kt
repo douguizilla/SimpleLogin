@@ -78,7 +78,6 @@ class ProfileDataFragment : Fragment() {
     private fun initValidationFields() = mapOf(
         RegistrationViewModel.INPUT_NAME.first to inputLayoutProfileDataName,
         RegistrationViewModel.INPUT_BIO.first to inputLayoutProfileDataBio,
-
     )
 
     private fun listenToRegistrationViewModelEvents(validationFields: Map<String, TextInputLayout>){
