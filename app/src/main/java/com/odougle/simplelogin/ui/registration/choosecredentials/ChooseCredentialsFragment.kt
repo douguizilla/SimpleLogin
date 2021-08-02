@@ -85,7 +85,7 @@ class ChooseCredentialsFragment : Fragment() {
     )
 
     private fun listenToRegistrationStateEvent(validationFields: Map<String, TextInputLayout>){
-        registrationViewModel.registrationStateEvent.observe(this, Observer { registrationState ->
+        registrationViewModel.registrationStateEvent.observe(viewLifecycleOwner, Observer { registrationState ->
             when(registrationState){
                 is RegistrationViewModel.RegistrationState.RegistrationCompleted ->{
                     val token = registrationViewModel.authToken
