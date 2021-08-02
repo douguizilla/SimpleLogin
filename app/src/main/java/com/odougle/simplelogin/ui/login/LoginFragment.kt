@@ -45,13 +45,13 @@ class LoginFragment : Fragment() {
         val validationFields = initValidationFields()
         listenToAuthenticationStateEvent(validationFields)
         registerViewListeners()
+        registerDeviceBackStackCallback()
+    }
 
-
+    private fun registerDeviceBackStackCallback() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
             cancelAuthentication()
         }
-
-
     }
 
     private fun registerViewListeners() {
