@@ -29,7 +29,7 @@ class LoginViewModel : ViewModel() {
         _authenticationStateEvent.value = AuthenticationState.Unauthenticated
     }
 
-    fun authenticationToken(token: String, username: String){
+    fun authenticateToken(token: String, username: String){
         this.token = token
         this.username = username
         _authenticationStateEvent.value = AuthenticationState.Authenticated
