@@ -10,15 +10,21 @@ import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
 import com.odougle.simplelogin.extensions.dismissError
+import com.odougle.simplelogin.extensions.navigateWithAnimations
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment() {
 
     private val viewModel: LoginViewModel by activityViewModels()
+
+    private val navController: NavController by lazy {
+        findNavController()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +64,7 @@ class LoginFragment : Fragment() {
         }
 
         buttonLoginSignUp.setOnClickListener {
-            TODO("descobrir como setar essa parte")
+            navController.navigateWithAnimations(R.id.action_loginFragment_to_registrationNavigation)
         }
 
         inputLoginUsername.addTextChangedListener {
