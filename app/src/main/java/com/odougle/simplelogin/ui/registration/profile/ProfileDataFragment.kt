@@ -3,11 +3,14 @@ package com.odougle.simplelogin.ui.registration.profile
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
@@ -18,6 +21,10 @@ import kotlinx.android.synthetic.main.fragment_profile_data.*
 class ProfileDataFragment : Fragment() {
 
     private val registrationViewModel: RegistrationViewModel by activityViewModels()
+
+    private val navController: NavController by lazy {
+        findNavController()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +42,6 @@ class ProfileDataFragment : Fragment() {
         registerDeviceBackStackCallback()
     }
 
-    private fun registerDeviceBackStackCallback() {
-        TODO("Not yet implemented")
-    }
-
     private fun registerViewListeners() {
         buttonProfileDataNext.setOnClickListener {
             val name = inputProfileDataName.text.toString()
@@ -54,6 +57,22 @@ class ProfileDataFragment : Fragment() {
         inputProfileDataBio.addTextChangedListener{
             inputLayoutProfileDataBio.dismissError()
         }
+    }
+
+    private fun registerDeviceBackStackCallback() {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner){
+            cancelRegistration()
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        cancelRegistration()
+        return true
+    }
+
+    private fun cancelRegistration() {
+        registrationViewModel.userCancelledRegistration()
+        navController.popBackStack(R.id.loginFragment, false)
     }
 
     private fun initValidationFields() = mapOf(
@@ -81,4 +100,6 @@ class ProfileDataFragment : Fragment() {
 
         })
     }
+
+
 }
