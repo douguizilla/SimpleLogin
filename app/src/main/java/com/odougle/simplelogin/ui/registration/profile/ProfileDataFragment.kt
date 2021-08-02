@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
+import com.odougle.simplelogin.extensions.dismissError
 import com.odougle.simplelogin.ui.registration.RegistrationViewModel
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 
@@ -26,15 +28,31 @@ class ProfileDataFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val validationFields = initValidationFields()
         listenToRegistrationViewModelEvents(validationFields)
+        registerViewListeners()
+        registerDeviceBackStackCallback()
+    }
 
+    private fun registerDeviceBackStackCallback() {
+        TODO("Not yet implemented")
+    }
 
+    private fun registerViewListeners() {
         buttonProfileDataNext.setOnClickListener {
             val name = inputProfileDataName.text.toString()
             val bio = inputProfileDataBio.text.toString()
 
             registrationViewModel.colletProfileData(name, bio)
+        }
+
+        inputProfileDataName.addTextChangedListener{
+            inputLayoutProfileDataName.dismissError()
+        }
+
+        inputProfileDataBio.addTextChangedListener{
+            inputLayoutProfileDataBio.dismissError()
         }
     }
 
