@@ -52,7 +52,6 @@ class RegistrationViewModel(
                 this@RegistrationViewModel.authToken = "token"
                 _registrationStateEvent.value = RegistrationState.RegistrationCompleted
             }
-
         }
     }
 

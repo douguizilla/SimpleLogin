@@ -5,7 +5,7 @@ import com.odougle.simplelogin.ui.registration.RegistrationViewParams
 
 interface UserRepository {
 
-    fun createUser(registrationViewParams: RegistrationViewParams)
+    suspend fun createUser(registrationViewParams: RegistrationViewParams)
 
     fun getUser(id: Long): User
 

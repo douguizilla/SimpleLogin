@@ -10,7 +10,7 @@ import com.odougle.simplelogin.data.db.UserEntity
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(user: UserEntity) //min 20
+    suspend fun save(user: UserEntity) //min 20
 
     @Query("SELECT * FROM user WHERE id = :id")
     fun getUser(id: Long): UserEntity

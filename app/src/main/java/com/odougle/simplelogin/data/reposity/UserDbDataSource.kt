@@ -9,7 +9,7 @@ import com.odougle.simplelogin.ui.registration.RegistrationViewParams
 class UserDbDataSource(
     private val userDao: UserDao
 ): UserRepository {
-    override fun createUser(registrationViewParams: RegistrationViewParams) {
+    override suspend fun createUser(registrationViewParams: RegistrationViewParams) {
         userDao.save(registrationViewParams.toUserEntity())
     }
 
