@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 class RegistrationViewModel(
     private val userRepository: UserRepository
 ): ViewModel() {
-    lateinit var registrationViewParams: RegistrationViewParams
+    lateinit var registrationViewParams: RegistrationViewParams //problema aqui
 
     //para proteger o livedata e ser usado apenas nesta classe
     private val _registrationStateEvent = MutableLiveData<RegistrationState>(RegistrationState.CollectProfileData)
@@ -93,9 +93,7 @@ class RegistrationViewModel(
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return RegistrationViewModel(userRepository) as T
         }
-
     }
-
 
     companion object{
         val INPUT_NAME = "INPUT_NAME" to R.string.profile_data_input_layout_error_invalid_name
