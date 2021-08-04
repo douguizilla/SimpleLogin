@@ -1,11 +1,9 @@
 package com.odougle.simplelogin.ui.registration
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.odougle.simplelogin.R
 import com.odougle.simplelogin.data.reposity.UserRepository
+import kotlinx.coroutines.launch
 
 class RegistrationViewModel(
     private val userRepository: UserRepository
@@ -45,13 +43,16 @@ class RegistrationViewModel(
 
     fun createCredentials(username: String, password: String){
         if(isValidCredentials(username, password)){
-            registrationViewParams.username = username
-            registrationViewParams.password = password
+            viewModelScope.launch {
+                registrationViewParams.username = username
+                registrationViewParams.password = password
 
-            userRepository.createUser(registrationViewParams)
+                userRepository.createUser(registrationViewParams)
 
-            this.authToken = "token"
-            _registrationStateEvent.value = RegistrationState.RegistrationCompleted
+                this@RegistrationViewModel.authToken = "token"
+                _registrationStateEvent.value = RegistrationState.RegistrationCompleted
+            }
+
         }
     }
 
