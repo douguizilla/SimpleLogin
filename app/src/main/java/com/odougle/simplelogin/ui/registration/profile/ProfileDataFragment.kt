@@ -14,13 +14,23 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.odougle.simplelogin.R
+import com.odougle.simplelogin.data.db.AppDatabase
+import com.odougle.simplelogin.data.reposity.UserDbDataSource
 import com.odougle.simplelogin.extensions.dismissError
 import com.odougle.simplelogin.ui.registration.RegistrationViewModel
 import kotlinx.android.synthetic.main.fragment_profile_data.*
 
 class ProfileDataFragment : Fragment() {
 
-    private val registrationViewModel: RegistrationViewModel by activityViewModels()
+    private val registrationViewModel: RegistrationViewModel by activityViewModels(
+        //injetando o repositorio
+        factoryProducer = {
+            val database = AppDatabase.getDatabase(requireContext())
+            RegistrationViewModel.RegistrationViewModelFactory(
+                userRepository = UserDbDataSource(database.userDao())
+            )
+        }
+    )
 
     private val navController: NavController by lazy {
         findNavController()
