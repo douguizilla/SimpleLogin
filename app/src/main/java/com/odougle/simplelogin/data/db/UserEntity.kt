@@ -7,7 +7,7 @@ import com.odougle.simplelogin.ui.registration.RegistrationViewParams
 
 @Entity(tableName = "user")
 data class UserEntity(
-    @PrimaryKey val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,
     val bio: String,
     val username: String,
