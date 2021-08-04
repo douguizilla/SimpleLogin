@@ -2,6 +2,7 @@ package com.odougle.simplelogin.data.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.odougle.simplelogin.data.model.User
 import com.odougle.simplelogin.ui.registration.RegistrationViewParams
 
 @Entity(tableName = "user")
@@ -22,4 +23,12 @@ fun RegistrationViewParams.toUserEntity(): UserEntity{
             password = this.password
         )
     }
+}
+
+fun UserEntity.toUser(): User {
+    return User(
+        id = this.id.toString(),
+        name = this.name,
+        bio = this.bio,
+    )
 }
