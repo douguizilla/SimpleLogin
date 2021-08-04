@@ -26,7 +26,6 @@ class ChooseCredentialsFragment : Fragment() {
     private val args: ChooseCredentialsFragmentArgs by navArgs()
     private val loginViewModel: LoginViewModel by activityViewModels()
     private val registrationViewModel: RegistrationViewModel by activityViewModels()
-
     private val navController: NavController by lazy {
         findNavController()
     }
