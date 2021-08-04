@@ -6,13 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.odougle.simplelogin.R
 
 class RegistrationViewModel: ViewModel() {
-    sealed class RegistrationState{
-        object CollectProfileData: RegistrationState()
-        object CollectCredentials: RegistrationState()
-        object RegistrationCompleted: RegistrationState()
-        class InvalidProfileData(val fields: List<Pair<String, Int>>): RegistrationState()
-        class InvalidCredentials(val fields: List<Pair<String, Int>>): RegistrationState()
-    }
+
 
     //para proteger o livedata e ser usado apenas nesta classe
     private val _registrationStateEvent = MutableLiveData<RegistrationState>(RegistrationState.CollectProfileData)
@@ -83,4 +77,11 @@ class RegistrationViewModel: ViewModel() {
         val INPUT_PASSWORD = "INPUT_PASSWORD" to R.string.choose_credentials_input_layout_error_invalid_password
     }
 
+    sealed class RegistrationState{
+        object CollectProfileData: RegistrationState()
+        object CollectCredentials: RegistrationState()
+        object RegistrationCompleted: RegistrationState()
+        class InvalidProfileData(val fields: List<Pair<String, Int>>): RegistrationState()
+        class InvalidCredentials(val fields: List<Pair<String, Int>>): RegistrationState()
+    }
 }
