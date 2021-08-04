@@ -1,6 +1,7 @@
 package com.odougle.simplelogin.data.reposity
 
 import com.odougle.simplelogin.data.model.User
+import com.odougle.simplelogin.ui.registration.RegistrationViewParams
 
 interface UserRepository {
 
