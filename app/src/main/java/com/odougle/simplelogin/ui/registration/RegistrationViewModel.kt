@@ -10,6 +10,7 @@ import com.odougle.simplelogin.data.reposity.UserRepository
 class RegistrationViewModel(
     private val userRepository: UserRepository
 ): ViewModel() {
+    lateinit var registrationViewParams: RegistrationViewParams
 
     //para proteger o livedata e ser usado apenas nesta classe
     private val _registrationStateEvent = MutableLiveData<RegistrationState>(RegistrationState.CollectProfileData)
@@ -44,8 +45,11 @@ class RegistrationViewModel(
 
     fun createCredentials(username: String, password: String){
         if(isValidCredentials(username, password)){
-            //create account
-            //authenticate
+            registrationViewParams.username = username
+            registrationViewParams.password = password
+
+            userRepository.createUser(registrationViewParams)
+
             this.authToken = "token"
             _registrationStateEvent.value = RegistrationState.RegistrationCompleted
         }
