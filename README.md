@@ -10,4 +10,4 @@ Aprendendo, através das aulas do [Douglas Motta](https://www.youtube.com/watch?
 - Safe Args
 - Styles
 
-OBS: redme prévio, irei arrumá-lo em breve.
+OBS: redme prévio, irei arrumá-lo em breve com imagens de cada tela.
